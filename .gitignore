@@ -13,3 +13,7 @@
 *.jpg
 *.png
 *.bmp
+*.htm
+*.html
+RgoogleMaps/USA_htm/*
+RgoogleMaps/USA2_htm/*
