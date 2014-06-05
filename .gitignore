@@ -1,0 +1,13 @@
+.Rproj.user
+*.Rproj
+.Rhistory
+.RData
+*.log
+*.tex
+*.out
+*.synctex.gz
+*.sty
+*.toc
+*.jpg
+*.png
+*.bmp

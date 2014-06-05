@@ -1,0 +1,75 @@
+\documentclass[11pt,pdftex,mathserif]{beamer}
+% ewentualnie (w trakcie przygotowania prezentacji):
+% \documentclass[...,handout]{beamer} % jedna 'frame' == jeden slajd
+%\usepackage[T1]{polski}        % je¶li po angielsku, to skasuj
+% \usepackage[polish]{babel}     % je¶li po angielsku, to skasuj
+% \selectlanguage{polish}        % je¶li po angielsku, to skasuj
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}  % kodowanie polskich znaków CP1250 (windows)
+% Alternatywnie - latin2 dla kodowania ISO-8859-2 (raczej nie Windows)
+% latex/pdflatex nie wspiera niestety Unicode (np. UTF-8)
+\usepackage{amsmath,amssymb}     % wiêcej symboli matematycznych
+\usepackage{graphicx}            % je¶li chcemy wstawiaæ grafikê
+\usepackage{hyperref}            % odno¶niki internetowe, zaawansowane ust. PDF
+%\hypersetup{pdfstartview={FitW}}
+%%%%%%%%%%%% MOJE ULUBIONE USTAWIENIA BEAMERA %%%%%%%%%%%%%
+%
+\usetheme{Warsaw} % Warsaw to nazwa stylu - zmieñ na SWOJ¡ ulubion±
+\usecolortheme{whale}
+\useoutertheme{infolines}
+\useinnertheme{circles}
+\usefonttheme{professionalfonts}
+%%
+\setbeamertemplate{navigation symbols}{} % WY£¡CZA PASEK NAWIGACJI U DO£U
+\setbeamercovered{transparent} % WP£YWA NA WY¦WIETLANIE "SPAUZOWANYCH" ELEMENTÓW
+%
+\setbeamertemplate{theorems}[numbered]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\title[Spatial Data in R]{Spatial Data in R}
+\author[M. Bujarski, N. Potocka]{Marcin Bujarski, Natalia Potocka}
+%\institute[MiNI PW]{}
+\date[09.06.2014]{09.06.2014}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\begin{document}   % jedziemy :-)
+%%%%%%%%%%%%% SLAJD TYTU£OWY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}% wy³±cza paski na górze i na dole
+\begin{frame}%
+
+   \begin{center}%
+%
+%
+%   %%%%%%%%%%%% NAGLOWEK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+      \begin{columns}
+         \begin{column}[c]{7cm}\centering
+            {\footnotesize{Warsaw University of~Technology}}\\
+            {\footnotesize{Faculty~of Mathematics and Information Science}}
+         \end{column}
+      \end{columns}
+
+
+   %%%%%%%% TYTUL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      \vspace*{2em}
+
+      \colorbox{blue}{\parbox{10cm}{\color{white}\centering\LARGE{Spatial Data in R}}}
+
+      \vspace*{1.5em}%
+      {\Large{Marcin Bujarski, Natalia Potocka}}\\%
+%      {\color{blue}\footnotesize\texttt{M.Gagolewski@mini.pw.edu.pl}}
+
+      %\vspace*{2.5em}%
+      {\it\footnotesize Warsaw, 09.06.2014}  % DATA
+
+   \end{center}
+
+\end{frame}
+
+
+
+\end{document}
