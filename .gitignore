@@ -8,6 +8,8 @@
 *.synctex.gz
 *.sty
 *.toc
+*.nav
+*.snm
 *.jpg
 *.png
 *.bmp
