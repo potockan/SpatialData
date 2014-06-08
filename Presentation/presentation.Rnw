@@ -1,27 +1,27 @@
-\documentclass[11pt,pdftex,mathserif]{beamer}
+\documentclass[11pt,pdflatex]{beamer}
 % ewentualnie (w trakcie przygotowania prezentacji):
 % \documentclass[...,handout]{beamer} % jedna 'frame' == jeden slajd
-%\usepackage[T1]{polski}        % je∂li po angielsku, to skasuj
-% \usepackage[polish]{babel}     % je∂li po angielsku, to skasuj
-% \selectlanguage{polish}        % je∂li po angielsku, to skasuj
+%\usepackage[T1]{polski} % je≈õli po angielsku, to skasuj
+% \usepackage[polish]{babel} % je≈õli po angielsku, to skasuj
+% \selectlanguage{polish} % je≈õli po angielsku, to skasuj
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}  % kodowanie polskich znakÛw CP1250 (windows)
+\usepackage[utf8]{inputenc} % kodowanie polskich znak√≥w CP1250 (windows)
 % Alternatywnie - latin2 dla kodowania ISO-8859-2 (raczej nie Windows)
 % latex/pdflatex nie wspiera niestety Unicode (np. UTF-8)
-\usepackage{amsmath,amssymb}     % wiÍcej symboli matematycznych
-\usepackage{graphicx}            % je∂li chcemy wstawiaÊ grafikÍ
-\usepackage{hyperref}            % odno∂niki internetowe, zaawansowane ust. PDF
+\usepackage{amsmath,amssymb} % wiƒôcej symboli matematycznych
+\usepackage{graphicx} % je≈õli chcemy wstawiaƒá grafikƒô
+\usepackage{hyperref} % odno≈õniki internetowe, zaawansowane ust. PDF
 %\hypersetup{pdfstartview={FitW}}
 %%%%%%%%%%%% MOJE ULUBIONE USTAWIENIA BEAMERA %%%%%%%%%%%%%
 %
-\usetheme{Warsaw} % Warsaw to nazwa stylu - zmieÒ na SWOJ° ulubion±
+\usetheme{Warsaw} % Warsaw to nazwa stylu - zmie≈Ñ na SWOJƒÑ ulubionƒÖ
 \usecolortheme{whale}
 \useoutertheme{infolines}
 \useinnertheme{circles}
 \usefonttheme{professionalfonts}
 %%
-\setbeamertemplate{navigation symbols}{} % WY£°CZA PASEK NAWIGACJI U DO£U
-\setbeamercovered{transparent} % WP£YWA NA WY¶WIETLANIE "SPAUZOWANYCH" ELEMENT”W
+\setbeamertemplate{navigation symbols}{} % WY≈ÅƒÑCZA PASEK NAWIGACJI U DO≈ÅU
+\setbeamercovered{transparent} % WP≈ÅYWA NA WY≈öWIETLANIE "SPAUZOWANYCH" ELEMENT√ìW
 %
 \setbeamertemplate{theorems}[numbered]
 %
@@ -35,15 +35,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 
-\begin{document}   % jedziemy :-)
-%%%%%%%%%%%%% SLAJD TYTU£OWY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\thispagestyle{empty}% wy≥±cza paski na gÛrze i na dole
+\begin{document} % jedziemy :-)
+%%%%%%%%%%%%% SLAJD TYTU≈ÅOWY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}% wy≈ÇƒÖcza paski na g√≥rze i na dole
 \begin{frame}%
 
    \begin{center}%
 %
 %
-%   %%%%%%%%%%%% NAGLOWEK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%% NAGLOWEK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
       \begin{columns}
          \begin{column}[c]{7cm}\centering
@@ -61,15 +61,173 @@
 
       \vspace*{1.5em}%
       {\Large{Marcin Bujarski, Natalia Potocka}}\\%
-%      {\color{blue}\footnotesize\texttt{M.Gagolewski@mini.pw.edu.pl}}
+% {\color{blue}\footnotesize\texttt{M.Gagolewski@mini.pw.edu.pl}}
 
       %\vspace*{2.5em}%
-      {\it\footnotesize Warsaw, 09.06.2014}  % DATA
+      {\it\footnotesize Warsaw, 09.06.2014} % DATA
 
    \end{center}
 
 \end{frame}
 
 
+\begin{frame}{OpenStreetMap}
+   \begin{center}
+     \begin{figure}
+     \includegraphics{indeks.jpeg}
+     \end{figure}
+   \end{center}
+\end{frame}
 
+\begin{frame}
+<<eval=FALSE>>=
+map <- openmap(upperLeft = c(lat= 54.8,
+                             lon= 18.2),
+              lowerRight = c(lat= 53.9,
+                             lon= 19.8),
+              type="osm")
+@
+<<eval=FALSE>>=
+plot(map)
+@
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+  \includegraphics[height=8cm]{1.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+  \includegraphics[height=8cm]{2.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+  \includegraphics[height=8cm]{3.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+  \includegraphics[height=8cm]{4.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+  \includegraphics[height=8cm]{5.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+Data structure in OpenStreetMap:
+\begin{itemize}
+   \item nodes
+   \item ways
+   \item relations
+\end{itemize}
+\pause
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+<<message=FALSE>>=
+library("osmar")
+pl <- get_osm(relation(49715), osmsource_api())
+@
+\pause
+<<>>=
+class(pl)
+@
+\pause
+<<>>=
+names(pl)
+@
+\end{frame}
+\begin{frame}[fragile]
+<<>>=
+unclass(pl$nodes)
+@
+\end{frame}
+\begin{frame}[fragile]
+<<>>=
+unclass(pl$ways)
+@
+\pause
+<<>>=
+names(pl$relations)
+@
+\end{frame}
+\begin{frame}[fragile]
+<<>>=
+pl$relations$refs[c(1:3, 745:754),]
+@
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+  \includegraphics[height=8cm]{g.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+<<eval=FALSE>>=
+pl <- get_osm(relation(49715), osmsource_api())
+@
+\pause
+<<eval=FALSE>>=
+pl <- get_osm(relation(49715), osmsource_api(), full=T)
+@
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+  \includegraphics[height=8cm]{PL2.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+<<eval=FALSE>>=
+pl <- get_osm(relation(49715), osmsource_api(), full=T)
+@
+\pause
+<<eval=FALSE>>=
+plot(pl)
+@
+\pause
+<<eval=FALSE>>=
+subareas <- pl$relations$refs$ref[
+                  pl$relations$refs$role=="subarea"]
+@
+\pause
+<<eval=FALSE>>=
+for (i in subareas) {
+   tmp <- get_osm(relation(i), osmsource_api(), full=TRUE)
+   tmpsp <- as_sp(tmp, what="lines")
+   lines(tmpsp)
+}
+@
+\end{frame}
+
+\begin{frame}[fragile]
+<<eval=FALSE>>=
+warsaw <- get_osm(relation(336074), osmsource_api(), full=T)
+plot(warsaw)
+l_184 <- get_osm(relation(3073087), osmsource_api(), full=T)
+l_sp <- as_sp(l_184, what="lines")
+lines(l_sp, col="red")
+@
+\end{frame}
+
+
+
+\begin{frame}
+  \begin{center}
+  \includegraphics[height=8cm]{wrs.png}
+  \end{center}
+\end{frame}
 \end{document}
