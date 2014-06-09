@@ -1,0 +1,16 @@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{Produc.st}\hlopt{@}\hlkwc{sp}\hlopt{@}\hlkwc{proj4string}\hlkwb{=}\hlkwd{CRS}\hlstd{(}\hlstr{'+proj=longlat +datum=WGS84'}\hlstd{)}
+\hlkwd{library}\hlstd{(RColorBrewer)}
+\hlstd{ee} \hlkwb{<-} \hlkwd{stplotGoogleMaps}\hlstd{(Produc.st,}\hlkwc{zcol}\hlstd{=}\hlstr{'unemp'}\hlstd{,}
+         \hlkwc{stfilename}\hlstd{=}\hlstr{'USA.htm'}\hlstd{,}\hlkwc{colPalette}\hlstd{=}\hlkwd{brewer.pal}\hlstd{(}\hlnum{9}\hlstd{,} \hlstr{"YlOrRd"}\hlstd{),}
+         \hlkwc{mapTypeId}\hlstd{=}\hlstr{'ROADMAP'}\hlstd{,}\hlkwc{w}\hlstd{=}\hlstr{'49%'}\hlstd{,}\hlkwc{h}\hlstd{=}\hlstr{'49%'}\hlstd{,} \hlkwc{fillOpacity}\hlstd{=}\hlnum{0.85}\hlstd{)}
+\hlcom{# without control}
+\hlstd{ee} \hlkwb{<-} \hlkwd{stplotGoogleMaps}\hlstd{(Produc.st,}\hlkwc{zcol}\hlstd{=}\hlstr{'unemp'}\hlstd{,}
+         \hlkwc{stfilename}\hlstd{=}\hlstr{'USA2.htm'}\hlstd{,}\hlkwc{colPalette}\hlstd{=}\hlkwd{brewer.pal}\hlstd{(}\hlnum{9}\hlstd{,} \hlstr{"YlOrRd"}\hlstd{),}
+         \hlkwc{mapTypeId}\hlstd{=}\hlstr{'ROADMAP'}\hlstd{,}\hlkwc{w}\hlstd{=}\hlstr{'33%'}\hlstd{,}\hlkwc{h}\hlstd{=}\hlstr{'25%'}\hlstd{,}
+         \hlkwc{fillOpacity}\hlstd{=}\hlnum{0.85}\hlstd{,} \hlkwc{control.width}\hlstd{=}\hlnum{0}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}

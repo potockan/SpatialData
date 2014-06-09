@@ -230,4 +230,276 @@ lines(l_sp, col="red")
   \includegraphics[height=8cm]{wrs.png}
   \end{center}
 \end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m00.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+\begin{frame}{plotGoogleMaps}
+The plotGoogleMaps package:
+\begin{itemize}
+   \item provides an interactive plot device for handling the
+geographic data within web browsers
+   \item is designed for the automatic creation of web maps as a combination of users’ data and Google Maps layers
+   \item uses web browser as plotting device instead of default R
+graphic device.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE>>=
+library(plotGoogleMaps)
+data(meuse)
+head(meuse[,1:8])
+@
+\end{frame}
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE>>=
+coordinates(meuse) <- ~x+y # convert to SPDF
+# Class for spatial attributes that 
+# have spatial point locations
+typeof(meuse)
+class(meuse)
+proj4string(meuse) <- CRS('+init=epsg:28992')
+# adding Coordinate Referent Sys.
+@
+<<message=FALSE, tidy=FALSE, eval=FALSE>>=
+m <- plotGoogleMaps(meuse,filename='myMap1.htm')
+@
+\end{frame}
+
+
+\begin{frame}
+\textsf{S4} is the 4th version of \textsf{S}. \textsf{S} is a language that has two implementation: \textsf{S}-plus is commercial, \textsf{R} is free. The main characteristic of \textsf{S4} compared to \textsf{S3} is the development of functions which allow to consider \textsf{S} as an object language. By extension, \textsf{S4} stand for object oriented programming with \textsf{S}. And thus with \textsf{R} or \textsf{S}-plus.
+More at: \href{http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf}{A (Not So) Short Introduction to \textsf{S4}}
+\end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m01.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE, eval=FALSE>>=
+ic <- iconlabels(meuse$zinc, height=12)
+m <- plotGoogleMaps(meuse,zcol='zinc',
+      filename='myMap_z2.htm',
+      iconMarker=ic, mapTypeId='ROADMAP',
+      layerName = 'MEUSE POINTS')
+# zcol - the column we want to label
+@
+\end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m02.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE, eval=FALSE>>=
+m <- bubbleGoogleMaps(meuse,zcol='zinc',max.radius = 80,
+                    filename='myMap3.htm',strokeOpacity=0)
+@
+\end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m03.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE, eval=FALSE>>=
+m <- segmentGoogleMaps(meuse, zcol=c('zinc','dist.m'),
+      mapTypeId='ROADMAP', filename='myMap4.htm',
+      colPalette=c('#E41A1C','#377EB8'), strokeColor='black')
+@
+\end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m04.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+
+% \begin{frame}[fragile]
+% <<message=FALSE, tidy=FALSE, eval=FALSE>>=
+% data(meuse.grid)
+% coordinates(meuse.grid)<-c('x','y')
+% meuse.grid <- as(meuse.grid,'SpatialPixelsDataFrame')
+% im <- as.image.SpatialGridDataFrame(meuse.grid['dist'])
+% cl <- ContourLines2SLDF(contourLines(im))
+% proj4string(cl) <- CRS('+init=epsg:28992')
+% mapMeuseCl <- plotGoogleMaps(cl,zcol='level',strokeWeight=1:9 ,
+%                filename='myMap5.htm',mapTypeId='ROADMAP')
+% @
+% \end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m06.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE, eval=FALSE>>=
+nc <- readShapeSpatial(system.file("shapes/sids.shp",
+            package="maptools")[1],
+            proj4string=CRS("+proj=longlat +datum=NAD27"))
+#install.packages("RColorBrewer")
+library(RColorBrewer)
+m <- plotGoogleMaps(nc,zcol="NWBIR74",filename='MyMap6.htm',
+      mapTypeId='TERRAIN',colPalette= brewer.pal(7,"Reds"),
+      strokeColor="white")
+@
+\end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m07.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE, eval=FALSE>>=
+m1 <- plotGoogleMaps(cl,zcol='level',
+                    strokeWeight=1:9 ,
+                    colPalette='grey',
+                    add=TRUE)
+m2 <- bubbleGoogleMaps(meuse,zcol='zinc',
+                     colPalette= brewer.pal(5,"Accent"),
+                     max.radius = 80,
+                     previousMap= m1,
+                     filename='comb.html')
+@
+\end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m08.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE, eval=FALSE>>=
+library("spacetime")
+library("maps")
+library("maptools")
+library("plm")
+states.m <- map('state',plot=FALSE,fill=TRUE)
+IDs <- sapply(strsplit(states.m$names, ":"),function(x) x[1])
+states <- map2SpatialPolygons(states.m,IDs=IDs)
+yrs <- 1970:1986
+time <- as.POSIXct(paste(yrs, "-01-01", sep=""),tz = "GMT")
+data("Produc")
+Produc.st = STFDF(states[-8], time,
+                  Produc[order(Produc[2], Produc[1]),])
+@
+STFDF -- spatio-temporal data for which each location has data for each time.
+\end{frame}
+
+\begin{frame}[fragile]
+<<message=FALSE, tidy=FALSE, eval=FALSE>>=
+Produc.st@sp@proj4string=CRS('+proj=longlat +datum=WGS84')
+library(RColorBrewer)
+ee <- stplotGoogleMaps(Produc.st,zcol='unemp',
+         stfilename='USA.htm',colPalette=brewer.pal(9, "YlOrRd"),
+         mapTypeId='ROADMAP',w='49%',h='49%', fillOpacity=0.85)
+# without control
+ee <- stplotGoogleMaps(Produc.st,zcol='unemp',
+         stfilename='USA2.htm',colPalette=brewer.pal(9, "YlOrRd"),
+         mapTypeId='ROADMAP',w='33%',h='25%',
+         fillOpacity=0.85, control.width=0)
+@
+\end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m09.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+% \begin{frame}[fragile]
+% <<message=FALSE, tidy=FALSE, eval=FALSE>>=
+% 
+% @
+% \end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m10.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+% \begin{frame}[fragile]
+% <<message=FALSE, tidy=FALSE, eval=FALSE>>=
+% 
+% @
+% \end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m11.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+% \begin{frame}[fragile]
+% <<message=FALSE, tidy=FALSE, eval=FALSE>>=
+% 
+% @
+% \end{frame}
+
+\begin{frame}{plotGoogleMaps}
+   \begin{center}
+     \begin{figure}
+     \includegraphics[height=6cm]{m12.jpg}
+     \end{figure}
+   \end{center}
+\end{frame}
+
+\begin{frame}{Bibliografia}
+\begin{thebibliography}{}
+\bibitem[1]{AS} \href{http://cran.at.r-project.org/web/packages/plotGoogleMaps/vignettes/plotGoogleMaps-tutorial.pdf}{A plotGoogleMaps tutorial}
+\bibitem[2]{CZ} \href{http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf}{A (Not So) Short Introduction to \textsf{S4}}
+\bibitem[3]{M} \href{http://www.jstatsoft.org/v51/i07/paper}{spacetime: Spatio-Temporal Data in \textsf{R}}
+%\bibitem[4]{IPIPAN} \href{www.ipipan.waw.pl/\~{}stw/ais/daaisy.html}{www.ipipan.waw.pl/\~{}stw/ais/daaisy.html}
+\end{thebibliography}
+\end{frame}
+
+\begin{frame}{}
+   \begin{center}
+      \Huge{Thank you.}
+   \end{center}
+\end{frame}
+
+
 \end{document}
